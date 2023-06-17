@@ -17,7 +17,11 @@ class MainViewModel {
     }
     
     func fetchItems() {
-        
-        // TODO
+        service.fetchData {
+            [weak self] items in
+            if let unwrappedItems = items {
+                self?.delegate?.didFetchItems(items: unwrappedItems)
+            }
+        }
     }
 }
